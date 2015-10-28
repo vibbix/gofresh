@@ -24,17 +24,14 @@ func (commits Commits) String() string {
 	if !isLimited {
 		limit = count
 	}
-
 	var out string
 	for _, commit := range commits[:limit] {
-		str := cyan(fmt.Sprintf("    %s\n", commit))
+		str := cyan(fmt.Sprintf("\t%s\n", commit))
 		out = fmt.Sprintf("%s%s", out, str)
 	}
-
 	if isLimited {
 		more := yellow(fmt.Sprintf("and %d more...\n", count-Max))
 		out = fmt.Sprintf("%s%s", out, more)
 	}
-
 	return out
 }
