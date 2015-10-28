@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
+	"golang.org/x/tools/go/vcs"
 	"os"
 	"path/filepath"
-
-	"golang.org/x/tools/go/vcs"
+	"runtime"
 )
 
 // Package represents single Go package/repo in Gopath.
@@ -107,5 +107,7 @@ func init() {
 	// No legacy is so rich as honesty. (:
 	if os.Getenv("TRUTH_MODE") != "" {
 		emojiRune = '🐞'
+	} else if runtime.GOOS == "windows" {
+		emojiRune = '√'
 	}
 }

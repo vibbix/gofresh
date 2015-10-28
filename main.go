@@ -72,6 +72,7 @@ func main() {
 			err = pkg.Refresh()
 			if err != nil {
 				failed = true
+
 				fmt.Fprintf(stdout, "%s: %s\n", red(name), redBold(err.Error()))
 				return
 			}
@@ -114,9 +115,9 @@ func main() {
 	}
 
 	for _, pkg := range outdated {
-		fmt.Print(pkg)
+		fmt.Fprintf(stdout, (*pkg).String())
 	}
-	fmt.Fprintf(stdout, green("---\nYou have %d packages out of date\n", len(outdated)))
+	fmt.Fprintln(stdout, green("---\nYou have %d packages out of date\n", len(outdated)))
 	fmt.Fprintln(stdout, "To update all packages automatically, run", bold("gofresh -update"))
 }
 
